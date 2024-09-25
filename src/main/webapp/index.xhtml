@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<head>
+    <title>JSF - Hello World</title>
+</head>
+<body>
+<h1>Hello World!</h1>
+<h1>Current Date and Time</h1>
+<p>The current date and time is: <h:outputText value="#{dateBean.currentDate}" /></p>
+
+<h1>Set and Get Variable</h1>
+
+<p>Current value of message: <strong><h:outputText value="#{variableBean.message}" /></strong></p>
+
+<h:form>
+    <h:outputLabel for="message" value="Enter new message: " />
+    <h:inputText id="message" value="#{variableBean.message}" required="true">
+        <f:validateLength minimum="5" maximum="100" />
+    </h:inputText>
+    <h:message for="message" style="color:red" />
+    <h:commandButton value="Submit" action="#{variableBean.updateMessage}" />
+</h:form>
+
+
+
+</body>
+</html>
