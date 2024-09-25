@@ -20,7 +20,7 @@ public class FirstServlet extends HttpServlet {
         out.println("<form action='first-servlet' method='post'>");
         out.println("<input type='submit' value='Send POST Request'/>");
         out.println("</form>");
-        out.println("<br/><a href='index.jsp'>Back to Home</a>");
+        out.println("<br/><a href='index.xhtml'>Back to Home</a>");
         out.println("</body></html>");
     }
 

@@ -1,17 +1,19 @@
 package com.example.demo1;
 
-import java.text.SimpleDateFormat;
+import jakarta.annotation.ManagedBean;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class DateBean {
-    private String currentDate;
 
-    public DateBean() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        currentDate = formatter.format(new Date());
-    }
+@Named
+@RequestScoped
+public class DateBean implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public String getCurrentDate() {
-        return currentDate;
+        return new Date().toString();
     }
 }
