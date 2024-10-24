@@ -1,29 +1,51 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 <head>
-    <title>JSF - Hello World</title>
+    <title>JSF - CRUD Example</title>
 </head>
 <body>
-<h1>Hello World!</h1>
-<h1>Current Date and Time</h1>
-<p>The current date and time is: <h:outputText value="#{dateBean.currentDate}" /></p>
-
-<h1>Set and Get Variable</h1>
-
-<p>Current value of message: <strong><h:outputText value="#{variableBean.message}" /></strong></p>
+<h1>JSF CRUD Operations</h1>
 
 <h:form>
-    <h:outputLabel for="message" value="Enter new message: " />
-    <h:inputText id="message" value="#{variableBean.message}" required="true">
-        <f:validateLength minimum="5" maximum="100" />
-    </h:inputText>
-    <h:message for="message" style="color:red" />
-    <h:commandButton value="Submit" action="#{variableBean.updateMessage}" />
+    <h1>Create Student</h1>
+    <h:outputLabel for="name" value="Name: " />
+    <h:inputText id="name" value="#{studentBean.student.name}" required="true" />
+    <h:outputLabel for="email" value="Email: " />
+    <h:inputText id="email" value="#{studentBean.student.email}" required="true" />
+    <h:commandButton value="Add Student" action="#{studentBean.createStudent}" />
 </h:form>
 
+<h1>All Students</h1>
+<h:dataTable value="#{studentBean.students}" var="student">
+    <h:column>
+        <f:facet name="header">ID</f:facet>
+        #{student.id}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Name</f:facet>
+        #{student.name}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Email</f:facet>
+        #{student.email}
+    </h:column>
 
+    <h:column>
+    <f:facet name="header">Actions</f:facet>
+    <h:commandButton value="Delete" action="#{studentBean.deleteStudent(student.id)}" />
 
+        <h:commandLink value="" action="#{studentBean.loadStudent(student)}">
+            <h:outputLink value="edit.xhtml">Update</h:outputLink>
+        </h:commandLink>
+</h:column>
+</h:dataTable>
+<h:form>
+    <h1>Delete Student</h1>
+    <h:outputLabel for="studentIdToDelete" value="Student ID: " />
+    <h:inputText id="studentIdToDelete" value="#{studentBean.studentId}" />
+    <h:commandButton value="Delete Student" action="#{studentBean.deleteStudent(studentBean.studentId)}" />
+</h:form>
 </body>
 </html>
