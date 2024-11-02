@@ -8,7 +8,7 @@
     <class>com.example.model.Student</class>
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8mb4"/>
       <property name="jakarta.persistence.jdbc.user" value="root" />
       <property name="jakarta.persistence.jdbc.password" value="" />
       <property name="eclipselink.logging.level" value="FINE"/>

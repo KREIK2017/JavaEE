@@ -1,59 +1,71 @@
 package com.example.model;
 
-import com.example.database.DataService;
-import com.example.model.Student;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
+ import com.example.service.StudentService;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-
+import java.io.Serializable;
 import java.util.List;
 
 @Named
-@RequestScoped
-public class StudentBean {
+@SessionScoped
+public class StudentBean implements Serializable {
 
-    @Inject
-    private DataService dataService;
-    private int studentId;
+    @EJB
+    private StudentService studentService;
+
     private Student student = new Student();
     private List<Student> students;
+    private int studentId;
+    private List<Student> limitedStudents;
+    @PostConstruct
+    public void init() {
+        students = studentService.getAllStudents();
+        limitedStudents = studentService.getLimitedStudents(5); // наприклад, 5 студентів
+
+    }
 
     public void createStudent() {
-        dataService.create(student);
-        student = new Student();
-        loadStudents();
+        studentService.createStudent(student);
+        students = studentService.getAllStudents();
+        student = new Student();  // Очищення після створення
     }
+
     public void deleteStudent(int id) {
-        dataService.delete(id);
+        studentService.deleteStudent(id);
+        students = studentService.getAllStudents();
     }
-    public void updateStudent() {
-        dataService.update(student);
-        student = new Student();
-        loadStudents();
-    }
+
     public void loadStudent(Student student) {
-        this.student = student;
+        this.student = studentService.findStudent(student.getId());
     }
-    public List<Student> getStudents() {
-        if (students == null) {
-            loadStudents();
+
+    public void updateStudent() {
+        studentService.updateStudent(student);
+        students = studentService.getAllStudents();
+    }
+    public void findStudent() {
+        student = studentService.findStudent(studentId);
+    }
+    private List<String> upperCaseNames;
+    public List<String> getUpperCaseNames() {
+        if (upperCaseNames == null) {
+            upperCaseNames = studentService.getUpperCaseNames();
         }
-        return students;
+        return upperCaseNames;
     }
+    // Getters and Setters
+    public Student getStudent() { return student; }
+    public void setStudent(Student student) { this.student = student; }
 
-    private void loadStudents() {
-        students = dataService.findAllStudents();
-    }
+    public List<Student> getStudents() { return students; }
+    public void setStudents(List<Student> students) { this.students = students; }
 
-    public Student getStudent() {
-        return student;
-    }
+    public int getStudentId() { return studentId; }
+    public void setStudentId(int studentId) { this.studentId = studentId; }
 
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public List<Student> getLimitedStudents() {
+        return limitedStudents; // Виправлено
     }
 }
