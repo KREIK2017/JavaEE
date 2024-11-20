@@ -11,7 +11,6 @@ public class CalculationController {
 
     @Inject
     private CalculationBean calculationBean;
-
     private int number;
     private int result = 0;
 
