@@ -7,6 +7,27 @@
     <title>JSF - CRUD Example</title>
 </head>
 <body>
+
+    <h:form>
+        <h3>Калькулятор</h3>
+
+        <h:outputLabel value="Введіть число: " />
+        <h:inputText id="number" value="#{calculationController.number}" required="true" />
+
+        <h:commandButton value="Додати" action="#{calculationController.performAddition}" />
+        <h:commandButton value="Відняти" action="#{calculationController.performSubtraction}" />
+        <h:commandButton value="Множити" action="#{calculationController.performMultiplication}" />
+        <h:commandButton value="Ділити" action="#{calculationController.performDivision}" />
+        <h:commandButton value="Скинути" action="#{calculationController.reset}" />
+
+        <h:outputText value="Результат: #{calculationController.result}" />
+        <h:message for="number" style="color:red" />
+    </h:form>
+    <h:form>
+        <h3>Метаінформація про CalculationBean</h3>
+        <h:outputText value="#{metadataController.beanMetadata}" />
+    </h:form>
+
 <h1>JSF CRUD Operations</h1>
 <h:outputText value="Number of users online: #{userCounterBean.userCount}" />
 
