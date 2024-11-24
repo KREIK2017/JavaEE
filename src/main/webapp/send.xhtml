@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Відправлення повідомлення</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h3>Відправити повідомлення</h3>
+        <h:outputLabel value="Введіть повідомлення: " />
+        <h:inputText id="message" value="#{messageBean.message}" required="true" />
+        <h:message for="message" style="color:red" />
+        <h:commandButton value="Відправити" action="#{messageBean.sendMessage}" />
+    </h:form>
+    <h:outputText value="#{messageBean.lastMessage}" />
+</h:body>
+</html>
