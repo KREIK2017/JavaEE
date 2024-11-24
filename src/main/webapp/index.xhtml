@@ -7,6 +7,7 @@
     <title>JSF - CRUD Example</title>
 </head>
 <body>
+<!--    9 лаба -->
 
     <h:form>
         <h3>Калькулятор</h3>
@@ -27,80 +28,11 @@
         <h3>Метаінформація про CalculationBean</h3>
         <h:outputText value="#{metadataController.beanMetadata}" />
     </h:form>
+<!--    10 лаба -->
+    <h:form>
+        <h:button value="Надіслати повідомлення" outcome="send" />
 
-<h1>JSF CRUD Operations</h1>
-<h:outputText value="Number of users online: #{userCounterBean.userCount}" />
-
-<h:form>
-    <h:commandButton value="Запустити таймер" action="#{timerController.start}" />
-    <h:commandButton value="Зупинити таймер" action="#{timerController.stop}" />
-</h:form>
-<h:form>
-    <h1>Create Student</h1>
-    <h:outputLabel for="name" value="Name: " />
-    <h:inputText id="name" value="#{studentBean.student.name}" required="true" />
-    <h:message for="name" style="color:red" />
-
-    <h:outputLabel for="email" value="Email: " />
-    <h:inputText id="email" value="#{studentBean.student.email}" required="true" />
-    <h:message for="email" style="color:red" />
-
-    <h:commandButton value="Add Student" action="#{studentBean.createStudent}" />
-</h:form>
-
-<h1>All Students</h1>
-<h:dataTable value="#{studentBean.students}" var="student">
-    <h:column>
-        <f:facet name="header">ID</f:facet>
-        #{student.id}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Name</f:facet>
-        #{student.name}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Email</f:facet>
-        #{student.email}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Actions</f:facet>
-
-        <h:commandLink value="Update" action="#{studentBean.loadStudent(student)}">
-            <f:param name="studentId" value="#{student.id}" />
-            <h:outputLink value="edit.xhtml">Edit</h:outputLink>
-        </h:commandLink>
-    </h:column>
-</h:dataTable>
-
-<h:form>
-    <h1>Delete Student</h1>
-    <h:outputLabel for="studentIdToDelete" value="Student ID: " />
-    <h:inputText id="studentIdToDelete" value="#{studentBean.studentId}" />
-    <h:commandButton value="Delete Student" action="#{studentBean.deleteStudent(studentBean.studentId)}" />
-</h:form>
-
-<h1>Limited Students</h1>
-<h:dataTable value="#{studentBean.limitedStudents}" var="limitedStudent">
-    <h:column>
-        <f:facet name="header">ID</f:facet>
-        #{limitedStudent.id}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Name</f:facet>
-        #{limitedStudent.name}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Email</f:facet>
-        #{limitedStudent.email}
-    </h:column>
-</h:dataTable>
-
-<h1>Upper Case Names</h1>
-<h:dataTable value="#{studentBean.upperCaseNames}" var="upperCaseName">
-    <h:column>
-        <f:facet name="header">Upper Case Names</f:facet>
-        #{upperCaseName}
-    </h:column>
-</h:dataTable>
+        <h:button value="Отримати повідомлення" outcome="receive" />
+    </h:form>
 </body>
 </html>

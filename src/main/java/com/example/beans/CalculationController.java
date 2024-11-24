@@ -14,13 +14,6 @@ public class CalculationController {
     private int number;
     private int result = 0;
 
-    @Produces
-    @Named("producedCalculationBean")
-    public CalculationBean produceCalculationBean() {
-        calculationBean.setValue(10); // Початкове значення
-        return calculationBean;
-    }
-
     public int getNumber() {
         return number;
     }
@@ -75,4 +68,5 @@ public class CalculationController {
         calculationBean.reset();
         result = calculationBean.getValue();
     }
+
 }
