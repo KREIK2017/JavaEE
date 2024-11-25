@@ -77,4 +77,12 @@ public class StudentResource {
     public List<String> getUpperCaseNames() {
         return studentService.getUpperCaseNames();
     }
+
+    @GET
+    @Path("/json")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getStudentsAsJson() {
+        return studentService.getStudentsAsJson();
+    }
+
 }
