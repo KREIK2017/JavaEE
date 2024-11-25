@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.model.Student;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -46,5 +47,15 @@ public class StudentService {
         return entityManager.createQuery(
                         "SELECT CONCAT(UPPER(s.name), ' - ', s.email) FROM Student s", String.class)
                 .getResultList();
+    }
+    public String getStudentsAsJson() {
+        List<Student> students = getAllStudents(); // Отримання списку студентів
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(students); // Перетворення в JSON
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "{}"; // Повертаємо порожній JSON у разі помилки
+        }
     }
 }
